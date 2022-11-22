@@ -2,11 +2,17 @@
 
 using namespace std;
 
+//setting defined constant variables
 #define ZERO 0
 #define ERROR -9999
 #define ONE 1
 #define TWO 2
 
+/*
+Constructor function for a Vector object.
+Input: int n (for the capacity and resizeFactor)
+Output: none
+*/
 Vector::Vector(int n)
 {
 	if (n < TWO)
@@ -19,6 +25,11 @@ Vector::Vector(int n)
 	_resizeFactor = n;
 }
 
+/*
+Copy constructor function for a Vector object.
+Input: const Vector& other (the vactor object to copy)
+Output: none
+*/
 Vector::Vector(const Vector& other)
 {
 	this->_size = other._size;
@@ -33,6 +44,11 @@ Vector::Vector(const Vector& other)
 	}
 }
 
+/*
+OverLoading for the '=' operator, to copy all of the values from the vector 'other' to the given vector.
+Input: the vector we use it on (this), and the vector we copy (other).
+Output: none.
+*/
 Vector& Vector::operator=(const Vector& other)
 {
 	if (this == &other)
@@ -69,31 +85,61 @@ int& Vector::operator[](int n) const
 	}
 }
 
+/*
+Destructor function for a Vector object.
+Input: none
+Output: none
+*/
 Vector::~Vector()
 {
 	delete[] _elements;
 }
 
+/*
+Const 'get' function that returns the vector's size.
+Input: none
+Output: the vector's size (int _size).
+*/
 int Vector::size() const
 {
 	return _size;
 }
 
+/*
+Const 'get' function that returns the vector's capacity.
+Input: none
+Output: the vector's capacity (int _capacity).
+*/
 int Vector::capacity() const 
 {
 	return _capacity;
 }
 
+/*
+Const 'get' function that returns true if the vector is empty or false if it's not.
+Input: none
+Output: true if the vector is empty or false if it's not (bool _size <= ZERO).
+*/
 bool Vector::empty() const
 {
 	return _size <= ZERO;
 }
 
+/*
+Const 'get' function that returns the vector's resize factor.
+Input: none
+Output: the vector's resize factor (int _resizeFactor).
+*/
 int Vector::resizeFactor() const
 {
 	return _resizeFactor;
 }
 
+/*
+Function removes and returns the last element of the vector.
+Input: none
+Output: the last element of the vector (int element).
+*/
 int Vector::pop_back()
 {
 	int element = ZERO;
@@ -110,6 +156,9 @@ int Vector::pop_back()
 	return element;
 }
 
+/*
+
+*/
 void Vector::resize(const int n, const int& val)
 {
 	resize(n);
@@ -134,6 +183,11 @@ void Vector::AddValUntilN(const int val, const int n)
 	_size = n;
 }
 
+/*
+Function changes _size to n, unless n is greater than the vector's capacity
+Input: const int n
+Output: none
+*/
 void Vector::resize(const int n)
 {
 	if (n > _capacity)
@@ -143,17 +197,6 @@ void Vector::resize(const int n)
 	else
 	{
 		_size = n;
-
-		int* tempElements = _elements;
-
-		_elements = new int[_capacity];
-
-		for (int i = ZERO; i < _size; i++)
-		{
-			_elements[i] = tempElements[i];
-		}
-
-		delete[] tempElements;
 	}
 }
 
@@ -177,6 +220,11 @@ void Vector::reserve(const int n)
 	delete[] tempElements;
 }
 
+/*
+Function adds an element at the end of the vector.
+Input: const int& val (value of the element to add)
+Output: none
+*/
 void Vector::push_back(const int& val)
 {
 	if (_size == _capacity)
