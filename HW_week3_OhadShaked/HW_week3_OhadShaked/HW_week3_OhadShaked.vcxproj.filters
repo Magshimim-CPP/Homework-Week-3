@@ -23,7 +23,7 @@
     <ClCompile Include="Vector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test4.cpp">
+    <ClCompile Include="test1basic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
